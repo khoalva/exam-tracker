@@ -3,8 +3,8 @@ from typing import List
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = "sqlite:///./student_management.db"
-    DATABASE_URL_ASYNC: str = "sqlite+aiosqlite:///./student_management.db"
+    DATABASE_URL: str = "postgresql://neondb_owner:npg_Olnrcj5DS4Ie@ep-polished-sky-ad32sa01-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+    DATABASE_URL_ASYNC: str = "postgresql+asyncpg://neondb_owner:npg_Olnrcj5DS4Ie@ep-polished-sky-ad32sa01-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
     
     # Security
     SECRET_KEY: str = "your-secret-key-here-change-in-production"

@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     // Gọi API backend FastAPI
-    const backendUrl = 'http://localhost:8000/api/students/top10/group-a';
+    const backendUrl = 'https://myapp-xsg2.onrender.com/api/students/top10/group-a';
     const res = await fetch(backendUrl);
     if (!res.ok) {
       throw new Error(`Backend error: ${res.status}`);

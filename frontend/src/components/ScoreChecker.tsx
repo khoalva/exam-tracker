@@ -20,7 +20,7 @@ export default function ScoreChecker() {
     
     try {
       // API call to FastAPI backend
-      const response = await fetch(`http://127.0.0.1:8000/api/students/score/${sbd}`);
+      const response = await fetch(`/api/students/score/${sbd}`);
       
       if (!response.ok) {
         if (response.status === 404) {

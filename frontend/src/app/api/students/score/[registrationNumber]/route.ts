@@ -23,37 +23,25 @@ export async function GET(
   try {
     const { registrationNumber } = await params;
 
-    // TODO: Replace this with actual database query
-    // Example using Prisma:
-    // const student = await prisma.student.findUnique({
-    //   where: { registrationNumber },
-    //   include: { scores: true }
-    // });
 
-    // Mock data for demonstration
-    const mockStudent: StudentScore = {
-      registrationNumber: registrationNumber,
-      fullName: "John Doe",
-      math: 8.5,
-      physics: 7.8,
-      chemistry: 9.0,
-      literature: 6.5,
-      english: 7.2,
-      totalScore: 39.0,
-      averageScore: 7.8,
-      group: "A"
-    };
+    // Fetch from FastAPI backend
+    const apiUrl = `https://myapp-xsg2.onrender.com/api/students/score/${registrationNumber}`;
+    const res = await fetch(apiUrl);
 
-    // For demo purposes, return mock data if registration number exists
-    if (registrationNumber === "DEMO001" || registrationNumber.length >= 5) {
-      return NextResponse.json(mockStudent);
+    if (res.ok) {
+      const data = await res.json();
+      return NextResponse.json(data);
+    } else if (res.status === 404) {
+      return NextResponse.json(
+        { error: "Student not found" },
+        { status: 404 }
+      );
+    } else {
+      return NextResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
-
-    // Return 404 if student not found
-    return NextResponse.json(
-      { error: "Student not found" },
-      { status: 404 }
-    );
 
   } catch (error) {
     console.error('Error fetching student score:', error);
